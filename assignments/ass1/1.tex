@@ -1,0 +1,57 @@
+\section{Question 1}
+
+\begin{question}
+    For ($1-2$), use the model with one explanatory variable:
+    \begin{center}
+        $y_i = \beta_0 + \beta_1x_i + \epsilon_i, i = 1,2,...,n$.
+    \end{center}
+
+    Using partial differentiation on $SSE= \sum_{i = 1}^{n}{\sigma_{i}^2}$ , show that the critical values are
+    \begin{center}
+        $\hat{\beta_1} = \dfrac{n\sum_{i=1}^{n}{x_{i}y_{i}} - \sum_{i =1}^{n}{x_i}\sum_{i = 1}^{n}{y_i}}{n \sum_{i = 1}^{n}{x_i}^2 - \left(\sum_{i = 1}^{n}{x_i}\right)^2}$
+        
+        $\hat{\beta_0} = \dfrac{\sum_{i=1}^{n}{x_{i}y_{i}} - \beta_1\sum_{i =1}^{n}{{x_i}^2}}{\sum_{i = 1}^{n}{x_i}^2}$
+    \end{center}
+\end{question}
+
+\begin{answer}
+\begin{proof}
+    In this question, we want to find the critical values of $\beta_1$ and $\beta_2$ that minimize the SSE described in the question. Hence, we want to first take the partial differentiation $\tfrac{\partial SSE}{\partial \beta_1}$ and $\tfrac{\partial SSE}{\partial \beta_0}$ as below:
+    \begin{align}
+        \dfrac{\partial SSE}{\partial \beta_1} & = \tfrac{\partial}{\partial \beta_1}{\left(\sum_{i = 1}^{n}{\sigma_{i}^2}\right)} = \tfrac{\partial}{\partial \beta_1}{\left(\sum_{i = 1}^{n}{(y_i - \beta_0 - \beta_1x_i)^2}\right)}\\ 
+        & = \tfrac{\partial}{\partial \beta_1}{\left(\sum_{i = 1}^{n}{(y-\beta_0)^2 - 2(y_i-\beta_0)\beta_1x_i + {\beta_1}^2{x_1}^2}\right)}\\
+        & = -2\sum_{i = 1}^{n}{(y_i-\beta_0)x_i} + 2\sum_{i = 1}^{n}{x_i}^2\beta_1
+    \end{align}
+    
+    \begin{align}
+        \dfrac{\partial SSE}{\partial \beta_0} & = \tfrac{\partial}{\partial \beta_0}{\left(\sum_{i = 1}^{n}{\sigma_{i}^2}\right)} = \tfrac{\partial}{\partial \beta_0}{\left(\sum_{i = 1}^{n}{(y_i - \beta_0 - \beta_1x_i)^2}\right)}\\ 
+        & = \tfrac{\partial}{\partial \beta_0}{\left(\sum_{i = 1}^{n}{(y_i-\beta_1x_i)^2 - 2(y_i-\beta_1x_i)\beta_0 + {\beta_0}^2}\right)}\\
+        & = -2\sum_{i = 1}^{n}{(y_i - \beta_1x_i)} + 2\sum_{i = 1}^{n}{\beta_0}
+    \end{align}
+    Set both $\tfrac{\partial SSE}{\partial \beta_1}$ and $\tfrac{\partial SSE}{\partial \beta_0}$ to be equal to $0$, we can solve for $\hat{\beta_1}$ and $\hat{\beta_0}$
+    \begin{align}
+        &-2\sum_{i = 1}^{n}{(y_i-\beta_0)x_i} + 2\sum_{i = 1}^{n}{x_i}^2\beta_1 = 0\\
+        & \Rightarrow \sum_{i = 1}^{n}{x_iy_i} - \beta_0\sum_{i = 1}^{n}{x_i} = \beta_1\sum_{i = 1}^{n}{{x_i}^2}\\
+        & \Rightarrow \beta_1 = \dfrac{\sum_{i = 1}^{n}{x_iy_i} - \beta_0\sum_{i = 1}^{n}{x_i}}{\sum_{i = 1}^{n}{{x_i}^2}}\label{eqn:eqn9}
+    \end{align}
+    \begin{align}
+        &-2\sum_{i = 1}^{n}{(y_i - \beta_1x_i)} + 2\sum_{i = 1}^{n}{\beta_0} = 0\\
+        & \Rightarrow \sum_{i = 1}^{n}{y_i} - \beta_1\sum_{i = 1}^{n}{x_i} = \sum_{i = 1}^{n}{\beta_0}\\
+        & \Rightarrow \sum_{i = 1}^{n}{y_i} - \beta_1\sum_{i = 1}^{n}{x_i} = n\beta_0\\
+        & \Rightarrow \beta_0 = \dfrac{\sum_{i = 1}^{n}{y_i} - \beta_1\sum_{i = 1}^{n}{x_i}}{n}\label{eqn:eqn13}
+    \end{align}
+    By substituting equation (\ref{eqn:eqn13}) into equation (\ref{eqn:eqn9}), we can solve for $\hat{\beta_1}$ first.
+    \begin{align}
+        &\hat{\beta_1} = \dfrac{\sum_{i = 1}^{n}{x_iy_i} - \left(\frac{\sum_{i = 1}^{n}{y_i} - \hat{\beta_1}\sum_{i = 1}^{n}{x_i}}{n}\right)\sum_{i = 1}^{n}{x_i}}{\sum_{i = 1}^{n}{{x_i}^2}}\\
+        & \Rightarrow \hat{\beta_1} = \dfrac{n\sum_{i = 1}^{n}{x_iy_i} - \left(\sum_{i = 1}^{n}{y_i} - \hat{\beta_1}\sum_{i = 1}^{n}{x_i}\right)\sum_{i = 1}^{n}{x_i}}{n\sum_{i = 1}^{n}{{x_i}^2}}\\
+        & \Rightarrow n\hat{\beta_1}\sum_{i = 1}^{n}{{x_i}^2} = n\sum_{i = 1}^{n}{x_iy_i} -\sum_{i = 1}^{n}{y_i}\sum_{i = 1}^{n}{x_i} + \hat{\beta_1}{\sum_{i = 1}^{n}{x_i}}^2\\
+        & \Rightarrow \hat{\beta_1} \left(n\sum_{i = 1}^{n}{{x_i}^2} - {\left(\sum_{i = 1}^{n}{x_i}\right)}^2\right) = n\sum_{i = 1}^{n}{x_iy_i} -\sum_{i = 1}^{n}{y_i}\sum_{i = 1}^{n}{x_i}\\
+        & \Rightarrow \hat{\beta_1} = \dfrac{n\sum_{i = 1}^{n}{x_iy_i} -\sum_{i = 1}^{n}{y_i}\sum_{i = 1}^{n}{x_i}}{n\sum_{i = 1}^{n}{{x_i}^2} - {\left(\sum_{i = 1}^{n}{x_i}\right)}^2}\label{eqn:eqn18}
+    \end{align}
+    And then, 
+    \begin{align}
+        \hat{\beta_0} = \dfrac{\sum_{i = 1}^{n}{y_i} - \hat{\beta_1}\sum_{i = 1}^{n}{x_i}}{n}
+    \end{align}
+    where the value of $\beta_1$ is revealed in the equation (\ref{eqn:eqn18}).
+\end{proof}
+\end{answer}
