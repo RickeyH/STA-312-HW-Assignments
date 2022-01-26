@@ -13,7 +13,52 @@
 \end{question}
 
 \begin{answer}
-
+    Based on the given, we can set up the following matrix equation:
+    \begin{equation}
+        \left[\begin{matrix}
+            1 & 1\\
+            0 & 2\\
+            -1 & 2\\
+            2 & 0
+        \end{matrix}\right]
+        \left[\begin{matrix}
+            \beta_x\\
+            \beta_y
+        \end{matrix}\right]
+        = 
+        \left[\begin{matrix}
+            2\\
+            4\\
+            4\\
+            0
+        \end{matrix}\right]
+    \end{equation}
+    To solve this matrix equation, we could do the row reduction on the matrix 
+    \begin{equation}
+        \left[\begin{matrix}
+            1 & 1 & 2\\
+            0 & 2 & 4\\
+            -1 & 2 & 4\\
+            2 & 0 & 0
+        \end{matrix}\right]
+    \end{equation}
+    I used the "rref" command in the package "pracma" in R to do the row reduction. The code I used is shown as the following:
+    \begin{verbatim}
+        install.packages("pracma")
+        library(pracma)
+        A = cbind(c(1,0,-1,2),c(1,2,2,0),c(2,4,4,0))
+        rref(A)
+    \end{verbatim}
+    And R gives me a result of a matrix as below:
+    \begin{equation}
+        \left[\begin{matrix}
+            1 & 0 & 0\\
+            0 & 1 & 2\\
+            0 & 0 & 0\\
+            0 & 0 & 0
+        \end{matrix}\right]
+    \end{equation}
+    Hence, we know that $\beta_x = 0$ and $\beta_y = 2$. Then, $\hat{\beta} = \left[\begin{smallmatrix} 0 \\ 2 \end{smallmatrix}\right]$.
 \end{answer}
 
 \subsection{Part (b)}
@@ -22,5 +67,48 @@
 \end{question}
 
 \begin{answer}
-
+    Based on the given, we can set up the following matrix equation:
+    \begin{equation}
+        \left[\begin{matrix}
+            1 & 2\\
+            2 & 4\\
+            2 & 4\\
+            0 & 0
+        \end{matrix}\right]
+        \left[\begin{matrix}
+            \beta_y\\
+            \beta_z
+        \end{matrix}\right]
+        = 
+        \left[\begin{matrix}
+            1\\
+            0\\
+            -1\\
+            2
+        \end{matrix}\right]
+    \end{equation}
+    To solve this matrix equation, we could do the row reduction on the matrix 
+    \begin{equation}
+        \left[\begin{matrix}
+            1 & 2 & 1\\
+            2 & 4 & 0\\
+            2 & 4 & -1\\
+            0 & 0 & 2
+        \end{matrix}\right]
+    \end{equation}
+    I used the "rref" command again in R to do the row reduction. The code I used is shown as the following:
+    \begin{verbatim}
+        B = cbind(c(1,2,2,0),c(2,4,4,0),c(1,0,-1,2))
+        rref(B)
+    \end{verbatim}
+    And R gives me a result of a matrix as below:
+    \begin{equation}
+        \left[\begin{matrix}
+            1 & 2 & 0\\
+            0 & 0 & 1\\
+            0 & 0 & 0\\
+            0 & 0 & 0
+        \end{matrix}\right]
+    \end{equation}
+    Then, we know that there is no solution to this matrix equation, because in the second row of the row reduce Echelon form implies that $0\beta_y + 0\beta_z = 1$, which is impossible.
 \end{answer}
