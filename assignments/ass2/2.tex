@@ -5,12 +5,61 @@
 \end{question}
 
 \begin{answer}
-    Claim: The shortest distance from an arbitrary point to an arbitrary line through the origin in ${\mathbb{R}}^2$ is the length of a vector orthogonal to the line and passing through the point.
     \begin{proof}
-    Let $(x_0,y_0)$ be an arbitrary point on ${\mathbb{R}}^2$. We can find the expression of the line in ${\mathbb{R}}^2$, which is $y = \tfrac{b}{a}x \Rightarrow bx - ay = 0$. Then the distance from this point to this line can be calculated as the following:
+    Let $(x_0,y_0)$ be an arbitrary point on ${\mathbb{R}}^2$. We can find the vector from an arbitrary point $(ka,kb)$ on the line to $(x_0,y_0)$, which is $\left[\begin{smallmatrix} x_0 - ka \\ y_0 - kb \end{smallmatrix} \right]$. The squared length of the vector can be calculated by:
     \begin{equation}
-        \dfrac{\lvert bx_0 - ay_0 \rvert}{\sqrt{b^2 + {(-a)}^2}} = \dfrac{\lvert bx_0 - ay_0 \rvert}{\sqrt{b^2 + a^2}}
+        \left[\begin{matrix}
+        x_0 - ka\\
+        y_0 - kb
+        \end{matrix}\right]^{T}
+        \left[\begin{matrix}
+        x_0 - ka\\
+        y_0 - kb
+        \end{matrix}\right] = (x_0 - ka)^2 + (y_0 - kb)^2
     \end{equation}
-    
+    Since we want to find the $k$ value that minimizes the distance. To find this, we can take the derivative of the squared distance.
+    \begin{align}
+        \dfrac{d}{dk}{\left((x_0 - ka)^2 + (y_0 - kb)^2\right)} &= \dfrac{d}{dk}{\left({x_0}^2 - 2ax_0k + k^2a^2 + {y_0}^2 - 2by_0k + k^2b^2\right)}\\
+        &= 2ax_0 + 2a^2k - 2by_0 + 2b^2k
+    \end{align}
+    Setting this derivative to be equal to zero, we can find the value of $k$ that minimize the distance.
+    \begin{align}
+        &-2ax_0 + 2a^2k - 2by_0 + 2b^2k = 0\\
+        & \Rightarrow (2a^2 + 2b^2)k = 2ax_0 + 2by_0\\
+        & \Rightarrow (a^2 + b^2)k = ax_0 + by_0\\
+        & \Rightarrow k = \dfrac{ax_0 + by_0}{a^2 + b^2}
+    \end{align}
+    Hence, when the distance is minimized, the point on the line is $(\tfrac{a(ax_0 + by_0)}{a^2 + b^2}, \tfrac{b(ax_0 + by_0)}{a^2 + b^2})$. The the vector from this point to $(x_0,y_0)$ is $\left[\begin{smallmatrix} x_0 - \tfrac{a(ax_0 + by_0)}{a^2 + b^2} \\ y_0 - \tfrac{b(ax_0 + by_0)}{a^2 + b^2} \end{smallmatrix} \right]$. To test whether this vector is orthogonal to every vector in the form $\left[\begin{smallmatrix} ta \\ tb \end{smallmatrix} \right]$ in the line, where $t \in \mathbb{Z}$, we can take the dot product of them.
+    \begin{equation}
+        \begin{split}
+            \left[
+        \begin{matrix}
+            x_0 - \dfrac{a(ax_0 + by_0)}{a^2 + b^2}\\
+            y_0 - \dfrac{b(ax_0 + by_0)}{a^2 + b^2}
+        \end{matrix}
+        \right] \cdot
+        \left[
+        \begin{matrix}
+            ta\\
+            tb
+        \end{matrix}
+        \right]
+        & = 
+        \left[
+        \begin{matrix}
+            \dfrac{b^2x_0 - aby_0}{a^2 + b^2}\\
+            \dfrac{a^2y_0 - abx_0}{a^2 + b^2}
+        \end{matrix}
+        \right] \cdot
+        \left[
+        \begin{matrix}
+            ta\\
+            tb
+        \end{matrix}
+        \right]\\
+        & = \dfrac{tab^2x_0 - ta^2by_0 + ta^2by_0 - tab^2x_0}{a^2 + b^2} = 0
+        \end{split}
+    \end{equation}
+    Since the dot product equals to zero, we know that this vector is orthogonal to any vector in the line.
     \end{proof}
 \end{answer}

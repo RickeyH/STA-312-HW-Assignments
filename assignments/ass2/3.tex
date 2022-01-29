@@ -18,17 +18,23 @@
     I used the codes below fitting the model $2$ of the \textit{theft} against \textit{age} and \textit{age${}^2$}
     \begin{verbatim}
         # Fit the model of theft against age and age^2
-        lm2 <- lm(chredlin$theft~chredlin$age + I(chredlin$age^2))
+        # First find the order of the variable age
+        ord=order(chredlin$age)
+        # Using this order to order both the theft and the age
+        tord=chredlin$theft[ord]
+        aord=chredlin$age[ord]
+        lm2=lm(tord~aord+I(aord^2))
         # Show the result
         lm2
     \end{verbatim}
     I get the model $2$ which is $\widehat{theft} = 6.247810 + 0.698292 \cdot age - 0.003869 \cdot {age}^2$.
     \begin{verbatim}
-        plot(chredlin$theft~chredlin$age, xlab = "age", ylab = "theft")
+        # Make the scatter plot
+        plot(tord~aord, xlab = "age", ylab = "theft")
         # Plot the model 1
         abline(lm1)
         # Plot the model 2
-        points(chredlin$age, lm2$fitted, type = "l", col = "blue")
+        points(aord,lm2$fitted,type="l",lwd=3,col="blue")
     \end{verbatim}
     By the codes above, I made a scatter plot of \textit{theft} against \textit{age} with both models fitted, and I used color blue to indicate the model $2$, while the model $1$ is shown in black. I have the following figure.
     \begin{figure}[H]
@@ -36,5 +42,5 @@
         \includegraphics[width=0.8\textwidth]{Figure 3.png}
         \caption{\label{fig:fig3}plot of \textit{theft} against \textit{age} with fitted models}
     \end{figure}
-    From the Figure \ref{fig:fig3}, we can tell that the model $1$ seems to be a better fit, since it tells the trend of the data, while the second model is too complicated and is overfitted.
+    From the Figure \ref{fig:fig3}, we can tell that the model $2$ seems to be a better fit, since it shows the trend of the data that have a little bit high \textit{theft} value.
 \end{answer}
