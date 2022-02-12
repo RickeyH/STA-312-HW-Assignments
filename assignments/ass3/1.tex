@@ -5,5 +5,20 @@
 \end{question}
 
 \begin{answer}
-    
+\begin{proof}
+    By the description of the question, we know that $H_1y = \overline{y}\left[\begin{smallmatrix}1\\1\\1\\ \vdots \\1 \end{smallmatrix}\right]$. Hence, $H_1 = \left[\begin{smallmatrix}\tfrac{1}{n}&\cdots&\tfrac{1}{n}\\ \vdots & \ddots & \vdots\\ \tfrac{1}{n} & \cdots & \tfrac{1}{n}\end{smallmatrix}\right]$, where $n$ is the number of the response variables. The $H_1$ is clearly symmetric. Also, we can prove that $H_1$ is idempotent by showing that $\left[\begin{smallmatrix}\tfrac{1}{n}&\cdots&\tfrac{1}{n}\\ \vdots & \ddots & \vdots\\ \tfrac{1}{n} & \cdots & \tfrac{1}{n}\end{smallmatrix}\right] \left[\begin{smallmatrix}\tfrac{1}{n}&\cdots&\tfrac{1}{n}\\ \vdots & \ddots & \vdots\\ \tfrac{1}{n} & \cdots & \tfrac{1}{n}\end{smallmatrix}\right] = \left[\begin{smallmatrix}\tfrac{n}{n^2}&\cdots&\tfrac{n}{n^2}\\ \vdots & \ddots & \vdots\\ \tfrac{n}{n^2} & \cdots & \tfrac{n}{n^2}\end{smallmatrix}\right] = \left[\begin{smallmatrix}\tfrac{1}{n}&\cdots&\tfrac{1}{n}\\ \vdots & \ddots & \vdots\\ \tfrac{1}{n} & \cdots & \tfrac{1}{n}\end{smallmatrix}\right]$. In addition, since $H = X(X^TX)^{-1}X^T$, we had proved in class that $H$ is symmetric and idempotent. Thus, 
+    \begin{equation}
+        {(H - H_1)}^T = H^T - {H_1}^T = H - H_1 \text{ (by the symmetric property of } H \text{ and } H_1 \text{)}
+    \end{equation}
+    Hence, $H-H_1$ is symmetric. We can also write $H_1 = X_1{({X_1}^TX_1)}^{-1}{X_1}^T$, where $X_1 = \left[\begin{smallmatrix}1 \\1\\1\\ \vdots\\1\end{smallmatrix}\right]$. Therefore, 
+    \begin{align}
+        HH_1 &= 
+    \end{align}
+    Then, because
+    \begin{align}
+        (H-H_1)(H-H_1) &= H^2 - HH_1 - H_1H + {H_1}^2\\ 
+        &= H - HH_1 - H_1H + H_1 \text{ (by the idempotent property of } H \text{ and } H_1 \text{)}\\
+        &= H - 2H\left(\tfrac{1}{n}\left[\begin{smallmatrix}1&\cdots&1\\ \vdots & \ddots & \vdots\\ 1 & \cdots & 1\end{smallmatrix}\right]\right) + H_1\\
+    \end{align}
+\end{proof}
 \end{answer}
