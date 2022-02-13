@@ -10,15 +10,35 @@
     \begin{equation}
         {(H - H_1)}^T = H^T - {H_1}^T = H - H_1 \text{ (by the symmetric property of } H \text{ and } H_1 \text{)}
     \end{equation}
-    Hence, $H-H_1$ is symmetric. We can also write $H_1 = X_1{({X_1}^TX_1)}^{-1}{X_1}^T$, where $X_1 = \left[\begin{smallmatrix}1 \\1\\1\\ \vdots\\1\end{smallmatrix}\right]$. Therefore, 
+    Hence, $H-H_1$ is symmetric. We can also write $H_1 = X_1{({X_1}^TX_1)}^{-1}{X_1}^T$, where $X_1 = \left[\begin{smallmatrix}1 \\1\\1\\ \vdots\\1\end{smallmatrix}\right]$.
+    
+    Because we know that H maps every vector in $Col(X)$ to itself. Since $X_1 \subseteq Col(X)$, then $Col(X_1) \subseteq Col(X)$. Then $\forall x \in Col(X_1),\; x \in Col(X)$, and therefore, $Hx = x$. i.e. $HX_1 = X_1$.
+     Therefore, 
+    \begin{equation}
+        HH_1 = HX_1{({X_1}^TX_1)}^{-1}{X_1}^{T} = X_1{({X_1}^TX_1)}^{-1}{X_1}^{T} = H_1 \label{eqn:eqn2}
+    \end{equation}
+    Similarly, if we take the transpose of the both sides of equation \ref{eqn:eqn2}, we have 
     \begin{align}
-        HH_1 &= 
+        &{(HH_1)}^T = {H_1}^T\\
+        \Rightarrow & {H_1}^T H^T = {H_1}^T\\
+        \Rightarrow & H_1H = H_1 \text{ (by the idempotent property of } H \text{ and } H_1 \text{)}\label{eqn:eqn5}
     \end{align}
     Then, because
     \begin{align}
         (H-H_1)(H-H_1) &= H^2 - HH_1 - H_1H + {H_1}^2\\ 
         &= H - HH_1 - H_1H + H_1 \text{ (by the idempotent property of } H \text{ and } H_1 \text{)}\\
-        &= H - 2H\left(\tfrac{1}{n}\left[\begin{smallmatrix}1&\cdots&1\\ \vdots & \ddots & \vdots\\ 1 & \cdots & 1\end{smallmatrix}\right]\right) + H_1\\
+        &= H - H_1 - H_1 + H_1 \text{ (by equations \ref{eqn:eqn2} and \ref{eqn:eqn5})}\\
+        &= H - H_1
     \end{align}
+    Hence, this proves that $H - H_1$ is idempotent.
 \end{proof}
+Since $SSR = {(\hat{y} - \overline{y})}^T(\hat{y} - \overline{y})$, $\hat{y} = Hy$ and $\overline{y} = H_1y$, then
+\begin{align}
+    SSR &= {(\hat{y} - \overline{y})}^T(\hat{y} - \overline{y})\\
+    &= {(Hy - H_1y)}^T(Hy - H_1y)\\
+    &= {((H-H_1)y)}^T(H - H_1)y\\
+    &= y^T(H^T - {H_1}^T)(H - H_1)y\\
+    &= y^T(H - H_1)(H-H1)y \text{ (by the symmetric property of } H \text{ and } H_1 \text{)}\\
+    &= y^T(H-H_1)y \text{ (by the idempotent property of } H-H_1 \text{)}
+\end{align}
 \end{answer}

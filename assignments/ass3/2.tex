@@ -6,5 +6,19 @@ as its first column.
 \end{question}
 
 \begin{answer}
-    
+    \begin{proof}
+        By definition, $\sum{\hat{\epsilon_{i}}} = \sum{(y_i - \hat{y_i})} = {x_1}^T(y - \hat{y})$, where $x_1 = \left[\begin{smallmatrix}1 \\1\\1\\ \vdots\\1\end{smallmatrix}\right]$. Then
+        \begin{align}
+            \sum{\hat{\epsilon_{i}}} &= {x_1}^T(y - \hat{y})\\
+            &= {x_1}^T(Iy - Hy)\\
+            &= {x_1}^T(I-H)y\\
+            &= ({x_1}^TI - {x_1}^TH)y\\
+            &= ({x_1}^T - ({x_1}^TH^T))y \text{ (by the symmetric property of } H \text{)}\\
+            &= ({x_1}^T - {(Hx_1)}^T)y\\
+            &= ({x_1}^T - {x_1}^T)y \label{eqn:eqn22}\\
+            &= 0y\\
+            &= 0
+        \end{align}
+        Equation \ref{eqn:eqn22} is derived since $x_1 \in Col(X)$ and $H$ sends vectors in $Col(x)$ to itself. i.e. $Hx_1 = x_1$.
+    \end{proof}
 \end{answer}
