@@ -94,7 +94,7 @@
     I used the following codes to make the plot.
     \begin{verbatim}
         # Plot the residuals against the fitted values
-        plot(tg$r,tg$fitted)
+        plot(lm1$fitted,tg$r,xlab = "fitted values", ylab = "residuals")
     \end{verbatim}
     The plot I got is the Figure \ref{fig:fig6}.
     \begin{figure}[H]
@@ -114,7 +114,7 @@
     I used the following codes to make the plot.
     \begin{verbatim}
         # Plot the residuals against the variable income
-        plot(tg$r,tg$income)
+        plot(tg$income,tg$r,xlab = "income", ylab = "residuals")
     \end{verbatim}
     The plot I got is the Figure \ref{fig:fig7}.
     \begin{figure}[H]
