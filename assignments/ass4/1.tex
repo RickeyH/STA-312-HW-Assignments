@@ -11,7 +11,11 @@
 \end{question}
 
 \begin{answer}
-    
+    \begin{verbatim}
+        library(faraway)
+        data(chredlin)
+        zips <- as.integer(rownames(chredlin))
+    \end{verbatim}
 \end{answer}
 
 \subsection{Part b}
@@ -26,7 +30,12 @@
 \end{question}
 
 \begin{answer}
-    
+    I used the following codes to fit the two models:
+    \begin{verbatim}
+        # Fit two models
+        lmO <- lm(zips~theft + fire, data = chredlin)
+        lmo <- lm(zips~fire, data = chredlin)
+    \end{verbatim}
 \end{answer}
 
 \subsection{Part c}
@@ -36,7 +45,19 @@
 \end{question}
 
 \begin{answer}
-    
+    I used the code below to call the summaries of the both models:
+    \begin{verbatim}
+        # Show the result of the previous step
+        summary(lmO)
+        summary(lmo)
+    \end{verbatim}
+    From the result, I write out the two models' equations
+    \begin{equation}
+        \begin{aligned}
+            \Omega: \widehat{zips} & = 60641.7280 - 0.1590 \cdot theft - 0.4875 \cdot fire\\
+            \omega: \widehat{zips} & = 60639.1843 - 0.6995 \cdot fire
+        \end{aligned}
+    \end{equation}
 \end{answer}
 
 \subsection{Part d}
@@ -62,7 +83,7 @@
 \subsection{Part f}
 
 \begin{question}
-    est whether each parameter is separately significant to the model at $\alpha = 0.05$.
+    Test whether each parameter is separately significant to the model at $\alpha = 0.05$.
 \end{question}
 
 \begin{answer}
