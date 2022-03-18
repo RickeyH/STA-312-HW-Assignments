@@ -45,17 +45,11 @@
 \end{question}
 
 \begin{answer}
-    I used the code below to call the summaries of both models:
-    \begin{verbatim}
-        # Show the result of the previous step
-        summary(lmO)
-        summary(lmo)
-    \end{verbatim}
-    From the result, I write out the two models' equations
+   The two models' equations are shown below
     \begin{equation}
         \begin{aligned}
-            \Omega: \widehat{zips} & = 60641.7280 - 0.1590 \cdot theft - 0.4875 \cdot fire\\
-            \omega: \widehat{zips} & = 60639.1843 - 0.6995 \cdot fire
+            \Omega: zips_{\Omega} & = {{\beta}_{\Omega}}_0 + {{\beta}_{\Omega}}_1 \cdot theft + {{\beta}_{\Omega}}_2 \cdot fire + \epsilon_{\Omega}\\
+            \omega: zips_{\omega} & = {{\beta}_{\omega}}_0 + {{\beta}_{\omega}}_2 \cdot fire + \epsilon_{\omega}
         \end{aligned}
     \end{equation}
 \end{answer}
