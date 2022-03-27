@@ -11,7 +11,14 @@
 \end{question}
 
 \begin{answer}
-    
+    I use the \verb+confint+ command in R as the following code
+    \begin{verbatim}
+        # Fit the model
+        lm1 <- lm(gamble~sex+income, data = teengamb)
+        intsex <- confint(lm1,2,level=0.95)
+        intsex
+    \end{verbatim}
+    to construct a $95\%$ confidence level intercal for the coefficient of \verb+sex+, and I got a result of $(-35.35662,-7.912162)$.
 \end{answer}
 
 \subsection{Part b}
@@ -21,5 +28,25 @@
 \end{question}
 
 \begin{answer}
-    
+    I used the following code to find the $95\%$ confidence level boot-strapped interval for the coefficient of \verb+sex+
+    \begin{verbatim}
+        # Construct a 95% confidence level boot-strapped interval for the coefficient of sex.
+        # Find the residuals and fitted value of the original model
+        resids <- lm1$residuals
+        fit <- lm1$fitted
+        # Construct a vector with 4000 entries
+        betasexs <- numeric(4000)
+        # Construct a for loop to find the boot-strapped interval
+        for (i in 1:4000){
+          # Randomize the residuals to create 4000 random response variables with errors
+          fitboot <- fit + sample(resids,rep = TRUE)
+          # Fit new models with 4000 error terms
+          lmboot <- lm(fitboot ~ sex + income, data = teengamb)
+          # Store the betas for the variable sex
+          betasexs[i] <- lmboot$coeff[2]
+        }
+        # Find the 0.025 and 0.975 quantile of the betas to construct a boot-strapped confidence interval
+        cbind(quantile(betasexs,0.025),quantile(betasexs,0.975))
+    \end{verbatim}
+    , and I got a result of $(-34.38962,-8.711444)$.
 \end{answer}

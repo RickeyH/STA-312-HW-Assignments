@@ -5,5 +5,25 @@
 \end{question}
 
 \begin{answer}
-    
+    \begin{verbatim}
+        # Using the same data set and models, conduct a permutation test for the same hypothe-
+        # ses. How do your p-values compare?
+        # Compute the original F statistic
+        forg <- summary(lmO)$fstat
+        # Initialize the p-value
+        pval2=0
+        # Create the for loop
+        for (i in 1:4000){
+          # Fit the model with the permuting
+          lmnew <- lm(gamble~sample(sex)+income, data = teengamb)
+          # Find out whether the F stistic is bigger
+          if(summary(lmnew)$fstat > forg){
+            # if bigger, add it to the p value
+            pval=pval+1/4000
+          }
+        }
+        # return the p-value
+        pval
+    \end{verbatim}
+    The p-value I got from the code above is $0.00796732$ which is a little bigger than the $p$-value we have in the previous question, but it is still below $0.05$, so we could draw the conclusion that controlling for \verb+income+, we are $95\%$ confident that \verb+sex+ "affect" \verb+gamble+.
 \end{answer}
